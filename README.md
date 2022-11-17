@@ -28,7 +28,7 @@
 
 ## **Project Descriptions**
 
-This project is a part of Udacity Data Scientist Nanodegree program. We apply text processing techniques(Tokenization, Lemmatization, Count Vectorizer, Tdidf, ...) and use Random Forest model to classify the messages of disaster event. 
+This project is a part of Udacity Data Scientist Nanodegree program. It helps us to categorize the message of a disaster event so that we can react in a timely manner.
 
 ## **File Structure**
 

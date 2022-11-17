@@ -38,18 +38,21 @@ def clean_data(df):
     # use this row to extract a list of new column names for categories.
     # one way is to apply a lambda function that takes everything 
     # up to the second to last character of each string with slicing
+ 
     category_colnames = row.apply(lambda x:x.str[:-2]).values.tolist()
+    
 
     # rename the columns of `categories`
-    categories.columns = category_colnames
+    categories.columns = category_colnames[0]
     
     # convert category values to just numbers 0 or 1
     for column in categories:
+
         # set each value to be the last character of the string
         categories[column] = categories[column].str[-1]
         
         # convert column from string to numeric
-        categories[column] = (pd.to_numeric(categories[column])>=1)
+        categories[column] = (pd.to_numeric(categories[column])>=1)*1
 
     # drop the original categories column from `df`
     df.drop(['categories'], axis=1, inplace = True)
