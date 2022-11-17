@@ -33,7 +33,15 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
-    text = re.sub('[^a-zA-Z0-9]',' ',text) # Remove characters that not in A-Z, a-z, 0-9
+    """
+    Clean, tokenize  and Lemmatize text
+    
+    Input: text to be tokenize and lemmatize
+
+    Output: list of clean token
+    """
+
+    text = re.sub('[^a-zA-Z0-9]',' ', text) # Remove characters that not in A-Z, a-z, 0-9
     
     text = text.lower() # Convert all characters to lowercase
     
@@ -47,6 +55,14 @@ def tokenize(text):
 
 
 def build_model():
+    """
+    Build model
+    
+    Input: None
+
+    Output: best model
+    """
+
     pipeline = Pipeline([
                    ('vect', CountVectorizer(tokenizer=tokenize)),
                    ('tfidf', TfidfTransformer()),
@@ -54,7 +70,7 @@ def build_model():
     ])
 
     parameters = {
-        'clf__estimator__n_estimators': [1],
+        'clf__estimator__n_estimators': [10, 100],
     }
 
     cv = GridSearchCV(pipeline, param_grid=parameters, verbose=2) 

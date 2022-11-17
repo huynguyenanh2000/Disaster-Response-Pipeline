@@ -68,7 +68,7 @@ def save_data(df, database_filename):
     Save dataframe into sqlite database
     """
     engine = create_engine('sqlite:///' + database_filename)
-    df.to_sql(database_filename[:-3], engine, index=False)
+    df.to_sql('DisasterResponseETL', engine, index=False)
 
 
 def main():
