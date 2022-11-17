@@ -3,7 +3,7 @@ import pandas as pd
 import re
 from sqlalchemy import create_engine
 import nltk
-nltk.download(['stopwords','punkt','wordnet'])
+nltk.download(['stopwords','punkt','wordnet', 'omw-1.4'])
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
@@ -70,7 +70,7 @@ def build_model():
     ])
 
     parameters = {
-        'clf__estimator__n_estimators': [10, 100],
+        'clf__estimator__n_estimators': [1],
     }
 
     cv = GridSearchCV(pipeline, param_grid=parameters, verbose=2) 

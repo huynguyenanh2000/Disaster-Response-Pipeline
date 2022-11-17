@@ -27,11 +27,11 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///D:\Disaster-Response-Pipeline\data\DisasterResponseETL.db')
+engine = create_engine('sqlite:///..\\data\\DisasterResponseETL.db')
 df = pd.read_sql_table('DisasterResponseETL', engine)
 
 # load model
-model = joblib.load("D:\Disaster-Response-Pipeline\models\DisasterResponseModel.pkl")
+model = joblib.load("..\\models\\DisasterResponseModel.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
@@ -64,7 +64,29 @@ def index():
                     'title': "Genre"
                 }
             }
+        },
+
+       {
+            'data': [
+                Bar(
+                    x=category_names,
+                    y=category_counts
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Message Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category",
+                    'tickangle': -90
+                }
+            }
         }
+
+        
     ]
     
     # encode plotly graphs in JSON

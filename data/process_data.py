@@ -49,7 +49,7 @@ def clean_data(df):
         categories[column] = categories[column].str[-1]
         
         # convert column from string to numeric
-        categories[column] = pd.to_numeric(categories[column])
+        categories[column] = (pd.to_numeric(categories[column])>=1)
 
     # drop the original categories column from `df`
     df.drop(['categories'], axis=1, inplace = True)
@@ -68,7 +68,7 @@ def save_data(df, database_filename):
     Save dataframe into sqlite database
     """
     engine = create_engine('sqlite:///' + database_filename)
-    df.to_sql('DisasterResponseETL', engine, index=False)
+    df.to_sql('DisasterResponseETL', engine, if_exists = 'replace', index=False)
 
 
 def main():
